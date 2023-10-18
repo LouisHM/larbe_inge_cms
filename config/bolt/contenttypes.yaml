@@ -1,0 +1,385 @@
+# This file defines the content types on the website. See the documentation for
+# details: https://docs.bolt.cm/contenttypes/intro
+
+# The Homepage content type is a singleton: There can be only one record of this
+# content type.
+
+homepage:
+    name: Homepage
+    singular_name: Homepage
+    fields:
+        title:
+            type: text
+            class: large
+            group: content
+            label: Nom de la page
+            postfix: |
+                The 'Homepage' can contain basic information about the website. This title will be
+                shown on the homepage of the website, as the name implies. To change the
+                <em><strong>name</strong></em> of the site, as is shown in the header, and the tab
+                in the webbrowser, edit <code>sitename:</code> in the configuration file.
+        title1:
+            type: text
+            label: Titre 1
+        paragraph:
+            type: text
+            label: Paragraphe 
+            height: 200px
+        subtitle1: 
+            type: text
+            label: sous-titre 1
+        subtitle1_link:
+            type: text
+            label: Lien sous-titre 1
+        image1:
+            type: image
+            label: Image 1
+        link_img1:
+            type: text
+            label: Lien 1ère image
+        image2:
+            type: image
+            label: Image 2
+        link_img2:
+            type: text
+            label: Lien 2ème image
+        bg-img:
+            type: image
+            label: Image de fond
+        title2:
+            type: text
+            label: Titre 2
+        image3:
+            type: image
+            label: Image 3
+        list_title:
+            type: collection
+            label: Liste Titres
+            fields:
+                item:
+                    type: text
+        list_values:
+            type: collection
+            label: Liste Valeurs
+            fields:
+                item:
+                    type: text
+    viewless: false
+    singleton: true
+    icon_many: "fa:home"
+    icon_one: "fa:home"
+    show_on_dashboard: false
+
+
+# Pages can be used for the more 'static' pages on your site. This content-type
+# has a 'templateselect' field, which allows you to override the record_template
+# setting for an individual page.
+# The taxonomy for this ContentType is defined as 'groups', which is a so-called
+# "grouping taxonomy". This way you can easily group sets of pages that logically
+# belong together. If your site has a 'services' section, in which you'd like to
+# list the different types of services a company provides, you can group these
+# together.
+  
+pages:
+  name: Pages
+  singular_name: Page
+  record_template: page.twig
+  fields:
+      title:
+          type: text
+          class: large
+          group: content
+      slug:
+          type: slug
+          uses: [title]
+      
+chantiers:
+    name: Chantiers
+    singular_name: Chantier
+    show_on_dashboard: false
+    templateselect: chantier.twig #si plusieurs template, permet d'en choisir un lors de la création d'un nv chantier
+    record_template: chantier.twig
+    listing_template: chantier-listing.twig
+    taxonomy: [ metiers, activites, poles ]
+    icon_many: "fa:city"
+    icon_one: "fa:city"
+    fields:
+        title:
+            label: Nom du chantier
+            type: text
+            class: large
+            variant: inline
+            required: true
+
+        slug:
+            type: slug
+            uses: [title]
+
+        miniature:
+            label: Miniature
+            type: image
+
+        adress: 
+            label: Adresse
+            type: text  
+        
+        cdpstville: 
+            label: Code postal - ville
+            type: text
+            required: true
+            
+        date: 
+            label: Date
+            type: date
+
+        cost:
+            label: Coût 
+            type: text
+        
+        archi: 
+            label: Architecte
+            type: text 
+        
+        lots:
+            label: Lots
+            type: text 
+            
+        qualifs:
+            label: Qualifications
+            type: text 
+            
+        description:
+            label: Description
+            type: redactor
+            height: 100px
+        
+        gallery:
+            type: imagelist
+            extensions: [ jpeg, jpg, png, gif ]
+            upload: imagesChantier
+            extra:
+              title:
+                label: Title
+                placeholder: Titre image
+              caption:
+                label: Caption
+
+        files:
+            label: Fichiers joints ( format pdf )
+            type: filelist
+            extensions: [ pdf]
+            upload: imagesChantier
+
+# The 'Blocks' ContentType is a so-called 'resource ContentType'. This means
+# that it can be used to manage smaller pieces of content, like the 'about us'
+# text, an 'our address' in the footer, or similar short blurbs of text.
+# For more info, see: https://docs.bolt.cm/howto/resource-contenttype
+
+
+miniatures:
+    name: Miniatures
+    singular_name: Miniature
+    taxonomy: [ metiers, activites, poles ]
+
+    fields:
+        title:
+            type: text
+            label: Titre de la catégorie
+        image:
+            type: image
+            extensions: [ jpeg, jpg, png, gif ]
+        picto:
+            type: image
+            extensions: [ png, svg ]
+
+
+blocks:
+    name: Blocks
+    singular_name: Block
+#    sortable: true sert à rien
+    fields:
+        title:
+            type: text
+            label: Titre
+        subtitle:
+            type: text
+            label: Sous-titre
+        paragraph:
+            type: redactor
+            label: Paragraphe
+        link:
+            type: text
+            label: Lien
+        list:
+            type: collection
+            label: Liste
+            fields:
+                item:
+                    type: text
+        image:
+            type: image
+            label: Image
+        template:
+            type: templateselect
+            path: 'blocks/'
+        sorting:
+            type: number
+            label: Position
+            required: true
+            postfix: |
+                Nombre entier permettant de classer les blocs entre eux dans une même taxonomie
+    relations:
+        pages:
+            multiple: true
+            required: true
+            label: Page où sera affichée le bloc           
+    
+outils:
+    name: Outils
+    singular_name: Outil
+    taxonomy: [ tools ]
+    fields:
+        title:
+            type: text
+            label: Titre
+            required: true
+        image:
+            type: image
+            label: Image
+        paragraph:
+            type: redactor
+            label: Paragraphe
+        list:
+            type: collection
+            label: Liste
+            fields:
+                item:
+                    type: text
+        sorting:
+            type: number
+            label: Position
+            required: true
+            postfix: |
+                Nombre entier permettant de classer les outils ou implantations entre eux dans une même taxonomie
+    
+# The 'People' ContentType can be used to build pages about the people in your
+# company, organisation or any other kind of team.
+
+people:
+    name: People
+    singular_name: Person
+    title_format: "{name} ({description})"
+    fields:
+        name:
+            type: text
+            label: Nom/Prénom
+            class: large
+            variant: inline
+            fixture_format: '{name}'
+        job:
+            label: Métier
+            type: text
+            variant: inline
+            postfix: Poste ou qualificatif du poste
+            fixture_format: '{jobTitle}'
+        email:
+            label: E-mail
+            type: text
+            variant: inline
+            fixture_format: '{safeEmail}'
+        image:
+            label: Image
+            type: image
+        sorting:
+            type: number
+            label: Position
+            required: true
+            postfix: |
+                Nombre entier permettant de classer l'ordre d'affichage des collaborateurs
+    icon_one: fa:user
+    icon_many: fa:users
+
+# The 'Products' ContentType can be used to manage information about the
+# products or services you (or your company, organisation) provide.
+
+
+# Possible field types:
+#
+# text - varchar(256) - input type text.
+# number - double - Input field for numbers, with `mode: integer` or `mode: float`
+# imagelist - text (65kb) - Input type for imagelists. Add multiple images. Useful for image sliders, galleries, etcetera.
+# image - varchar(256) - image select/upload widget, stored as filename.
+# file - varchar(256) - file select/upload widget, stored as filename.
+# filelist - text (65kb) - Input type for a list of files. Including a description.
+# embed - text (65kb) - embed widget for video and audio. Stored as JSON.
+# html - text (65kb) - wysiwyg element.
+# textarea - varchar(32768) - Simple, plain < textarea > field.
+# markdown - varchar(32768) - wysiwyg element, which is parsed as Markdown text.
+# date - datetime - date selector widget, with `mode: date` or `mode: datetime`
+# email - text(65kb) - Input type for email.
+# select - varchar(256) - select with predefined values
+# templateselect - varchar(256) - select with template filenames
+# checkbox - integer - checkbox-field which is 1 (checked) or 0 (unchecked)
+# set - text (65kb) - Input type for sests. Group fields semantically into a combined set field.
+# collection - text (65kb) - Input type for collections. Add multiple fields of different types. Useful for lists.
+# data - text (65kb) - Read-only field, useful for storing (raw) data provided by an external source.
+# hidden - text (65kb) - Regular text field, except it is hidden from the content editor.
+# slug - text(65kb) - The slug for the record. Use with option `uses: [ title ]` to generate based on a title field.
+
+# Using YAML repeated nodes
+#
+# YAML allows the defining of "repeated nodes". These allow you to define a 'node'
+# with a 'key: &name' and referenced later with '<<: *name'
+#
+# Bolt allows you to define this with the special entry of '__nodes:' that itself
+# won't create a ContentType, but will allow you to use it in actual ContentTypes
+# to prevent repeating yourself.
+#
+# To achieve this, first create a key '__nodes:' and place it before your other contenttypes:
+#__nodes:
+#    field_defaults: &field_defaults
+#        title:
+#            type: text
+#            class: large
+#            group: main
+#        slug:
+#            type: slug
+#            uses: title
+#    template_defaults: &template_defaults
+#        template:
+#            type: templateselect
+#            filter: '*.twig'
+#            group: meta
+#
+# Then, as an example, you could create a ContentType with default fields, with
+# an additional 'image' field.
+#
+#contenttypeabc:
+#    name: ContentType Abc
+#    slug: contenttypeabc
+#    fields:
+#        <<: *field_defaults
+#        image:
+#            type: image
+#            attrib: title
+#            extensions: [ gif, jpg, png ]
+#        <<: *template_defaults
+#    taxonomy: [ chapters ]
+#    records_per_page: 10
+#
+# Alternatively, or additionally, you then can then create a ContentType with
+# default fields, and a 'select' field, and a different 'templateselect' option.
+#
+#contenttypexyz:
+#    name: ContentType Xyz
+#    slug: contenttypexyz
+#    fields:
+#        <<: *field_defaults
+#        selectfield:
+#            type: select
+#            values: [ none, foo, bar ]
+#        template:
+#            type: templateselect
+#            filter: '*_xyz.twig'
+#    taxonomy: [ tags ]
+#    records_per_page: 20

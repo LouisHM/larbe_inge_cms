@@ -1,0 +1,4 @@
+
+reference_extension:
+  resource: '../../vendor/bolt/tnt-search-engine/src/Controller/'
+  type: annotation

@@ -1,0 +1,62 @@
+# This file defines the different types of taxonomies in Bolt. See the
+# documentation for details: https://docs.bolt.cm/contenttypes/taxonomies
+
+metiers:
+    name: Métiers
+    slug: metiers
+    singular_name: Métier
+    singular_slug: metier
+    behaves_like: categories
+    multiple: true
+    options: { gen-elec: "Génie électrique", gen-clim: "Génie climatique", tce: "TCE", assaini: "Assainissement", cuisine-co: "Cuisines Collectives", eau: "Eau Potable", demo: "Démolition", vrd: "VRD", dsp: "DSP", incendie: "Sécurité Incendie" }
+    required: false
+    listing_template: category.twig
+
+activites:
+    name: Activités
+    slug: activites
+    singular_name: Activité
+    singular_slug: activite
+    behaves_like: categories
+    multiple: true
+    options: { bureaux: "Bureaux", sante: "Santé", sport: "Sport", public: "Équipement public", jeunesse: "Enseignement - Jeunesse", industries: "Industries", cuisines: "Cuisines Collectives / Commerciales", prod-energie: "Production Énergétique ", logements: "Logements Collectifs & Individuels", culture: "Culture", commerces: "Commerces", infrastructures: "Infrastructures Environnementales" }
+    required: false
+    listing_template: category.twig
+
+poles:
+    name: Pôles
+    slug: poles
+    singular_name: Pôle
+    singular_slug: pole
+    behaves_like: categories
+    multiple: true
+    options: { batiment: "Bâtiments", environnement: "Environnement Infrastructure" }
+    required: false
+    listing_template: category.twig
+    
+tools:
+    name: Outil ou implantation
+    slug: tools
+    singular_name: Tool
+    singular_slug: Tool
+    behaves_like: categories
+    multiple: true
+    options: { logiciels: "Logiciels", info: "Informatique", batiment: "Materiel Pôle Bâtiment", environnement: "Materiel Pôle Environnement" , implantations : "Implantations"}
+    required: false
+
+#tags:
+#    slug: tags
+#    singular_slug: tag
+#    behaves_like: tags
+#    postfix: "Ajoutez votre tag, s'il n'apparait pas, cela en créera un nouveau."
+#    allow_spaces: false
+#    #listing_template: tag-listing.twig #custom template
+#    required: false
+
+#groups:
+#    slug: groups
+#    singular_slug: group
+#    behaves_like: grouping
+#    options: { main: "The main group", meta: "Meta group", other: "The other stuff" }
+#    has_sortorder: true
+#    required: false
