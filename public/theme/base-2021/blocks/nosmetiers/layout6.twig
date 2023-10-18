@@ -1,0 +1,19 @@
+{% block component %}
+    <div class="layout6">
+
+        <div class="layout6-block1">
+            <h1 class="layout6-block1-title" >{{item.title}}</h1>
+            <p class="layout6-block1-paragraph">{{ item.paragraph }}</p>
+        </div>
+
+        <div class="layout6-block2">
+            <h2 class="layout6-block2-subtitle"> {{item.subtitle}} </h2>
+            <ul class="layout6-block2-list">
+                {% for prop in item.list %}
+                    <li>{{ prop }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}

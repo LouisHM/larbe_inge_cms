@@ -1,0 +1,41 @@
+{# 
+
+
+
+
+
+
+
+
+à priori ne sert pas. La liste des chantiers par catégorie est faite par category.twig
+
+
+
+
+
+
+
+
+#}
+
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+
+    <div class="chantier__listing-main bg-light">
+
+        {% setcontent chantiers = "chantiers" latest %}
+        <div  class=" references flex-md-row">
+            <h1 class="references-title">Nos Réalisations</h1>
+            <div>{% include 'partials/_searchbar.twig' %}</div>
+        </div>
+        <ul class="chantier__listing"> {# pourquoi la div fait la largeur du contenu#}
+
+            {% for chantier in chantiers %}
+                 {% include "partials/_chantiers_listing.twig" %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% include "partials/_category_recap.twig" %}
+{% endblock %}

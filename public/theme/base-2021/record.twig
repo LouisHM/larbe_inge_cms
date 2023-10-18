@@ -1,0 +1,30 @@
+{% extends 'partials/_master.twig' %}
+
+{% block content %}
+    <h1>{{ record.title }}</h1>
+    <h2>c la page record</h2>
+
+    {% if record.publishedAt %}
+        <p>Published on {{ record.publishedAt|date('M j, Y') }}</p>
+    {% endif %}
+
+    {% if record.image %}
+        <img src="{{ record.image.path }}" alt="{{ record.image.alt }}">
+    {% endif %}
+
+    {% if record.summary %}
+        <p>{{ record.summary }}</p>
+    {% endif %}
+
+    <div class="content">
+        {{ record.content }}
+    </div>
+
+    {% if record.taxonomy %}
+        <ul>
+            {% for term in record.taxonomy %}
+                <li>{{ term.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

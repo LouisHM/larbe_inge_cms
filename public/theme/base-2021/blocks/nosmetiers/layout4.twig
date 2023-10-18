@@ -1,0 +1,12 @@
+{% block component %}
+    <div class="layout4">
+        <div class="layout4-container">
+            <h2 class="layout4-container-subtitle">{{ item.title }}</h2>
+            <ul class="layout4-container-list">
+                {% for service in item.list %}
+                    <li>{{ service }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock component %}

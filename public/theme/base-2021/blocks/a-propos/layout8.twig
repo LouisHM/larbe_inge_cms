@@ -1,0 +1,17 @@
+{% block component %}
+    <div class="layout8">
+        <div class="layout8-text">
+            <h1 class="layout8-text-title">{{item.title}}</h1>
+            <ul class="layout8-text-list">
+                {% for prop in item.list %}
+                    <li>{{ prop }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="layout8-container">
+            <img class="layout8-container-img" src="{{ item.image }}">
+        </div>
+    </div>
+
+
+{% endblock %}

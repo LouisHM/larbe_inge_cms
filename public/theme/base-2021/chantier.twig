@@ -1,0 +1,111 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+        <div class="chantier">
+            <div class="chantier-media">
+                <div class="chantier-media-img-container" >
+					{#{  dump(variable) }#}
+                    <a href="{{ chantier.miniature }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4 chantier-media-img">
+                        <img src="{{ chantier.miniature }}"  alt="{{chantier.miniature.filename|replace({'imagesChantier/': '', '-': ' ', '_': ' '})}}" class="img-fluid">
+                    </a>
+                </div>
+                <ul class="chantier-media-gallery">
+                    {% for image in chantier.gallery %}
+                        <li>
+                            <a href="{{ image }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                                <img src="{{ image|thumbnail }}" alt="{{image.filename|replace({'imagesChantier/': '', '-': ' ', '_': ' '})}}" class="img-fluid">
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+				<div class="chantier-divleft-container" style="display: flex">
+					{%  if chantier.qualifs != '' %}
+						<div class="chantier-txt-info">
+								<p class="chantier-txt-info-title">Qualifications OPQIBI concernées</p>
+								<p class="chantier-txt-info-content">{{chantier.qualifs}}</p>
+						</div>
+					{%  endif %}
+
+					{% if chantier|taxonomies['metiers'] is defined and chantier|taxonomies['metiers']|length >0%}
+						<div class="chantier-txt-info">
+							<p class="chantier-txt-info-title">Métier(s) associé(s) </p>
+							<p class="chantier-txt-info-content">{% for metier in chantier|taxonomies['metiers'] %}
+								<a href="{{ metier|link }}">{{ metier.name }}</a>{% if not loop.last %}, {% endif %}
+							{% endfor %}</p>
+						</div>
+					{% endif %} 
+
+					{% if chantier|taxonomies['activites'] is defined and chantier|taxonomies['activites']|length >0%}
+						<div class="chantier-txt-info">
+							<p class="chantier-txt-info-title">Activité(s) associée(s) </p>
+							<p class="chantier-txt-info-content">{% for metier in chantier|taxonomies['activites'] %}
+								<a href="{{ metier|link }}">{{ metier.name }}</a>{% if not loop.last %}, {% endif %}
+							{% endfor %}</p>
+						</div>
+					{% endif %}
+
+					{% if chantier|taxonomies['poles'] is defined and chantier|taxonomies['poles']|length >0%}
+						<div class="chantier-txt-info">
+							<p class="chantier-txt-info-title">Pôle(s) associé(s) </p>
+							<p class="chantier-txt-info-content">{% for metier in chantier|taxonomies['poles'] %}
+								<a href="{{ metier|link }}">{{ metier.name }}</a>{% if not loop.last %}, {% endif %}
+							{% endfor %}</p>
+						</div>
+					{% endif %}
+					{#% for file in chantier.files %#}
+					{% set file = chantier.files|first %}
+						<div class="chantier-txt-info"><p class="chantier-txt-info-title" style="font-size:1.2em">
+							<i class="fas fa-file-pdf"></i>&nbsp; <a href="/{{ file.filename }}">Télécharger la fiche référence PDF</a>
+						</p></div>
+					{#% endfor %#}
+				</div>		
+            </div>
+
+            <div class="chantier-txt">
+				<div class="chantier-txt-header">
+					<h1 class="chantier-txt-title">{{chantier.title}}</h1><a class="chantier__listing-header-btn" href="#" onclick="history.back()">Retour</a>
+				</div>
+                <div class="chantier-txt-container">
+                        <div class="chantier-txt-info">
+                                <p class="chantier-txt-info-title">Adresse du chantier</p>
+                                <p class="chantier-txt-info-content">{{chantier.adress}}<br/>{{chantier.cdpstville}}</p>
+                        </div>
+						{%  if chantier.date != '' %}
+                        <div class="chantier-txt-info">
+                                <p class="chantier-txt-info-title">Date du chantier</p>
+                                <p class="chantier-txt-info-content">{{chantier.date}}</p>
+                        </div>
+						{%  endif %}
+                        <div class="chantier-txt-info">
+                                <p class="chantier-txt-info-title">Montant des travaux</p>
+                                <p class="chantier-txt-info-content">{{chantier.cost}}</p>
+                        </div>
+						{%  if chantier.archi != '' %}
+							<div class="chantier-txt-info">
+									<p class="chantier-txt-info-title">Architecte</p>
+									<p class="chantier-txt-info-content">{{chantier.archi}}</p>
+							</div>
+						{%  endif %}
+						{%  if chantier.lots != '' %}
+							<div class="chantier-txt-info">
+									<p class="chantier-txt-info-title">Lots</p>
+									<p class="chantier-txt-info-content">{{chantier.lots}}</p>
+							</div>
+						{%  endif %}
+                </div>
+				
+                <div class="chantier-txt-desc">
+                    <h2 class="chantier-txt-desc-title">Caractéristiques de l'opération</h2>
+                    <p class="chantier-txt-desc-content">{{chantier.description}}</p>
+					
+                </div>
+
+            </div>
+        </div>
+		
+
+       
+
+    {% include "partials/_category_recap.twig" %}
+
+{% endblock %}

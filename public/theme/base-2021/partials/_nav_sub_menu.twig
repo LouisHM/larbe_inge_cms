@@ -1,0 +1,17 @@
+{% for item in menu %} {% if item|current %}
+	{% if item.submenu %} 
+		<div class="divSubMenu" >
+			<ul class="nav navbar navSubMenu ">
+			{% for itemss in item.submenu %}
+				<li class="nav-item navSubMenu-item">
+					<div class="{{ itemss.class }}">
+						<a class="nav-item-link"  href="{{ itemss.uri }}">{{ itemss.label }}</a>
+					</div>
+				</li>
+			{% endfor %} 
+			</ul>
+		</div>
+	{% endif %}
+{% endif %} {% endfor %}
+	
+

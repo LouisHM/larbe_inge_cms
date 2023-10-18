@@ -1,0 +1,16 @@
+{% block component %}
+    <div class="layout1">
+        <div class="layout1-text">
+            <h1 class="layout1-text-title">{{ item.title }}</h1>
+            <h2 class="layout1-text-subtitle">{{ item.subtitle }}</h2>
+            <ul class="layout1-text-list" >
+                {% for skill in item.list %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="layout1-container">
+            <img src="{{ item.image }}" class="layout1-container-img">
+        </div>
+    </div>
+{% endblock %}

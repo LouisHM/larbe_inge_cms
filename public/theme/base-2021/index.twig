@@ -1,0 +1,135 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+    <div class="miniatures">
+        <div  class=" references flex-md-row">
+            <h1 class="references-title">Nos Réalisations</h1>
+            <div>{% include 'partials/_searchbar.twig' %}</div>
+        </div>
+
+        <ul class="miniatures-nav" id="miniatures-nav">
+            <li class="miniatures-nav-item clicked" id="metiers-btn">
+                <a class="miniatures-nav-link" href="#miniatures-nav">Par Metiers</a>
+            </li>
+            <li class="miniatures-nav-item" id="activites-btn">
+                <a class="miniatures-nav-link"  href="#miniatures-nav">Par secteur d'Activités</a>
+            </li>
+            <li class="miniatures-nav-item" id="poles-btn">
+                <a class="miniatures-nav-link"  href="#miniatures-nav">Par Pôles</a>
+            </li>
+        </ul>
+
+        {% setcontent categories = 'miniatures' limit 50 %}
+		
+        <ul class="miniatures-listing" id="miniatures-metiers">
+            {% for category in categories %}
+					{#{ dump(category) }#}
+                    {% for catLink in category|taxonomies['metiers'] %}
+						{#{ dump(catLink) }#}
+                        {% set categoryLink =  catLink|link %}
+
+                        <a href="{{ categoryLink }}">
+                            <li class="miniatures-item">
+                                <div class="miniatures-img">
+                                    <img  src="{{category.image}}">
+                                </div>
+                                <img class="miniatures-icon" src="{{ category.picto }}">
+                                <p class="miniatures-title" >{{ category.title }}</p>
+                            </li>
+                        </a>
+
+                    {% endfor %}
+
+            {% endfor %}
+
+        </ul>
+        <ul class="miniatures-listing" id="miniatures-activites">
+
+            {% for category in categories %}
+
+                {% for catLink in category|taxonomies['activites'] %}
+
+                    {% set categoryLink =  catLink|link %}
+
+                    <a href="{{ categoryLink }}">
+                        <li class="miniatures-item">
+                            <div class="miniatures-img">
+                                <img  src="{{category.image}}">
+                            </div>
+                            <img class="miniatures-icon" src="{{ category.picto }}">
+                            <p class="miniatures-title" >{{ category.title }}</p>
+                        </li>
+                    </a>
+
+                {% endfor %}
+
+            {% endfor %}
+
+        </ul>
+        <ul class="miniatures-listing" id="miniatures-poles">
+
+            {% for category in categories %}
+
+                {% for catLink in category|taxonomies['poles'] %}
+
+                    {% set categoryLink =  catLink|link %}
+
+                    <a href="{{ categoryLink }}">
+                        <li class="miniatures-item">
+                            <div class="miniatures-img">
+                                <img  src="{{category.image}}">
+                            </div>
+                            <img class="miniatures-icon" src="{{ category.picto }}">
+                            <p class="miniatures-title" >{{ category.title }}</p>
+                        </li>
+                    </a>
+
+                {% endfor %}
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+    {% setcontent homepage = 'homepage' %}
+    <div class="homepage-content">
+        <div class="homepage-content-block1">
+            <div class="homepage-content-block1-text">
+                <h1 class="homepage-content-block1-text-title">{{ homepage.title1 }}</h1>
+                <p class="homepage-content-block1-text-paragraph">{{ homepage.paragraph }}</p>
+                <a  href="{{ homepage.subtitle1 }}"><h2 class="homepage-content-block1-text-link" >{{ homepage.subtitle1 }}</h2></a>
+            </div>
+            <div class="homepage-content-block1-images">
+                <a href="{{ homepage.link_img1 }}" class="homepage-content-block1-images-container">
+                     <img class="homepage-content-block1-images-container-img" src="{{ homepage.image1 }}">
+                </a>
+                <a href="{{ homepage.link_img2 }}" class="homepage-content-block1-images-container">
+                    <img class="homepage-content-block1-images-container-img" src="{{ homepage.image2 }}">
+                </a>
+            </div>
+        </div>
+        <div class="homepage-content-block2">
+            <div  class="homepage-content-block2-image">
+                <h1 class="homepage-content-block2-image-title">{{ homepage.title2 }}</h1>
+                <div> <img src="{{ homepage.image3 }}"></div>
+            </div>
+            <div class="homepage-content-block2-text">
+                <ul class="homepage-content-block2-text-titles" >
+                    {% for title in homepage.list_title %}
+                        <li class="homepage-content-block2-text-titles-item">{{ title }}</li>
+                    {% endfor %}
+                </ul>
+                <ul class="homepage-content-block2-text-values">
+                    {% for value in homepage.list_values %}
+                        <li class="homepage-content-block2-text-values-item">{{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+
+    <div  class=" references flex-md-row">
+        <h1 class="references-title">{{record.title}}</h1>
+		{{ menu('nav-menu', 'partials/_nav_sub_menu.twig') }}
+        <div>{% include 'partials/_searchbar.twig' %}</div>
+    </div>
+	
+	
+	
+    {% set relatedrecords = record|related %}
+    <div >
+        {% for item in relatedrecords|order ("sorting") %}
+			{#{  dump(item) }#}
+
+            {% block component %}
+
+            {% include(item.template) %}
+
+            {% endblock %}
+
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

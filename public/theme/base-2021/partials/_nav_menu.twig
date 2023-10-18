@@ -1,0 +1,35 @@
+<section class="mb-3">
+    <nav class="navbar navbar-dark bg-white d-flex d-lg-none">
+        <div class="container-fluid">
+            <h1><a href="/">Larbre Ingenierie</a></h1>
+            <button class="navbar-toggler second-button" type="button" data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarToggleExternalContent10"
+                    aria-controls="navbarToggleExternalContent10" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+            </button>
+        </div>
+    </nav>
+    <div class="" >
+        <ul class="nav navbar navMenu " id="toggleNav">
+			<li class="nav-item navMenu-item text-black d-xs-none">
+				<a href="/"><img src="/theme/base-2021/img/li_logo_bandohr.png" alt="logo"/></a>
+			</li>
+            {% for item in menu %}
+                <li class="nav-item navMenu-item text-black">
+                    <div class="{{ item.class }}">
+						{%  if item.class == 'navMenu-item-client' %} <i class="fa-solid fa-lock"></i>{% endif %}
+                        <a class="nav-item-link"  href="{{ item.uri }}">{{ item.label }}</a>
+                        {# {% if item|current %}active{% endif %} Output active, but only if we're on the page that the item links to.#}
+                    </div>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+
+
+
+

@@ -1,0 +1,24 @@
+{% block footer %}
+    <div class="footer ">
+        <div class="footer-containers">
+            <h1 class="footer-title">LARBRE Ingénierie</h1>
+            <p class="footer-txt" style="padding-right:2rem">Jacques Larbre a fondé en 1974, en tant qu’Ingénieur Conseil, ce qui deviendra la société Larbre Ingénierie en 2001. Un de ces fils, Jérémy, l’a rejoint au poste de co-gérant en 2011. Depuis le 1er janvier 2014, Jacques a laissé la rélève à ses deux fils. La gestion et le fonctionnement de la société est réalisée de manière collégiale par ses deux co-gérants, Sébastien et Jérémy Larbre, ainsi que par l’ensemble de ses collaborateurs.</p>
+        </div>
+        <div class="footer-containers">
+            <h1 class="footer-title">Siège social</h1>
+            <p class="footer-txt">2, Av. Pierre Mendès-France<br/>
+            23000 GUERET<br/>
+            Tel : 05 55 52 33 22<br/>
+            Mail : bet23@larbre-ingenierie.fr</p>
+        </div>
+        <div class="footer-containers">
+            <h1 class="footer-title">Plan du site</h1>
+            {{ menu('footer-menu', 'partials/_footer_menu.twig') }}
+        </div>
+        <div class="footer-containers">
+            <h1 class="footer-title">Certifications</h1>
+            <img src="/theme/base-2021/img/logo-RGE.png" style="margin-right: 1rem">
+            <img src="/theme/base-2021/img/logo-HQE.png">
+        </div>
+    </div>
+{% endblock footer %}

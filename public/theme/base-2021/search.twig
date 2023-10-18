@@ -1,0 +1,43 @@
+{% extends 'partials/_master.twig' %}
+{% block main %}
+<div class=" references flex-md-row">
+	<h1 class="references-title">Résultat de la recherche de <i>{{ searchTerm }}</i></h1>
+	{% include 'partials/_searchbar.twig' %}
+</div>
+    </div>
+    {% if records|length == 0 %}
+        <div class="searchResult">
+            <h1 class="searchResult-title">
+                Désolé, aucun résultat n'a été trouvé pour "{{ searchTerm }}".
+            </h1>
+            <h2 class="searchResult-subtitle">
+                Réessayez ou parcourez les catégories ci-dessous.
+            </h2>
+            <div>{% include 'partials/_searchbar.twig' %}</div>
+        </div>
+    {% else %}
+		{% set chantiers = records %}
+		{% include "partials/_chantiers_listing.twig" %}
+		{#
+        <ul class="chantier__listing">
+        {% for record in records %}
+            <li class="chantier__listing-item bg-white">
+				<h2><a href="{{ record.link }}">{{ record.title }}</a></h2>
+                <a href="{{record.link}}" class="h-100 text-decoration-none">
+
+                    <div class="chantier__listing-item-divint">
+                        <img src={{record.miniature|thumbnail(400, 300)}} style="max-height: 300px" >
+                    </div>
+
+                    <div class=" m-2">
+                        <p class="fs-5 m-0 text-primary">{{record.adress}}</p>
+                        <p class="fs-6 m-0 text-black">{{record|title}}</p>
+                    </div>
+
+                </a>
+            </li>
+        {% endfor %}
+        </ul>#}
+    {% endif %}
+	 {% include "partials/_category_recap.twig" %}
+{% endblock %}

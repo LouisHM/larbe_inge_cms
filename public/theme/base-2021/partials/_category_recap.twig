@@ -1,0 +1,34 @@
+<div class="p-4 category__recap-main">
+    <h1 class="category__recap-title">Toutes nos réalisations</h1>
+
+    <div class="category__recap">
+        <div>
+            <h1 class="category__recap-subtitle">Par métiers</h1>
+            <ul class="fs-6 pl-0">
+                {% for metier2 in config.get('taxonomies/metiers/options') %}
+                    <li class="m-2 pl-0"><a class="category__recap-links text-white" href="/metiers/{{ metier2|slug }}">{{ metier2 }}</a></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div>
+            <h1 class="category__recap-subtitle">Par secteur d'activités</h1>
+            <ul class="fs-6">
+                {% for activite in config.get('taxonomies/activites/options') %}
+                    <li class="m-2"><a class="category__recap-links text-white" href="/activites/{{ activite|slug }}">{{ activite }}</a></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div>
+            <h1 class="category__recap-subtitle">Par pôle</h1>
+            <ul class="fs-6">
+                {% for activite in config.get('taxonomies/activites/options') %}
+                    <li class="m-2"><a class="category__recap-links text-white" href="/activites/{{ activite|slug }}">{{ activite }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

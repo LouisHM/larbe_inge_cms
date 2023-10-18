@@ -1,0 +1,24 @@
+{% block component %}
+    <div class="qualifications" id="qualifications">
+
+        <div class="qualifications-description">
+			<div class="qualifications-description-img-container">
+                <img class="qualifications-description-img" src="{{ item.image }}">
+            </div>
+            <div class="qualifications-description-txt">
+                <h1 class="qualifications-description-txt-title">{{ item.title }}</h1>
+                <p class="qualifications-description-txt-paragraph">{{ item.paragraph }}</p>
+            </div>
+        </div>
+
+        <div class="qualifications-links">
+            <div class="qualifications-links-container">
+                <p class="qualifications-links-container-txt">Qualifications Bâtiment - THERMIQUES - ELECTRIQUES</p><a class="qualifications-links-container-link" href="../page/qualifications-batiment">Lire</a>
+            </div>
+            <div class="qualifications-links-container">
+                <p class="qualifications-links-container-txt">Qualifications Environnement - EAU - ASSAINISSEMENT - VRD</p><a class="qualifications-links-container-link" href="../page/qualifications-environnement">Lire</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock component %}

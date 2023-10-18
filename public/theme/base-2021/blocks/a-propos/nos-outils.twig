@@ -1,0 +1,76 @@
+{% block component %}
+    <div class="outils" id="outils">
+        <h1 class="outils-title">{{ item.title }}</h1>
+        <ul class="outils-nav">
+            <li class="outils-nav-item clicked" id="logiciels-btn">
+                <a class="outils-nav-link" href="#outils">Logiciels</a>
+            </li>
+            <li class="outils-nav-item" id="info-btn">
+                <a class="outils-nav-link"  href="#outils">Informatique</a>
+            </li>
+            <li class="outils-nav-item" id="batiment-btn">
+                <a class="outils-nav-link"  href="#outils">Matériel Pôle Bâtiment</a>
+            </li>
+            <li class="outils-nav-item" id="environnement-btn">
+                <a class="outils-nav-link"  href="#outils">Matériel Pôle Environnement</a>
+            </li>
+        </ul>
+        {% setcontent outils = 'outils' where {'tools': "logiciels" }  orderby 'sorting' %}
+        <ul class="outils-logiciels" id="outils-logiciels">
+            {% for outil in outils %}
+                <li class="outils-logiciels-item">
+                    <h1 class="outils-logiciels-item-title">{{ outil.title }}</h1>
+                    <div class="outils-logiciels-item-paragraph">
+                        {{ outil.paragraph }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% setcontent outils = 'outils' where {'tools': "info" } %}
+        {% for outil in outils %}
+        <ul class="outils-informatique" id="outils-info">
+            {% for item in outil.list %}
+                <li class="outils-informatique-item">
+                    {{ item }}
+                </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+
+
+        <ul class="outils-batiment" id="outils-batiment">
+
+            {% setcontent outils = 'outils' where {'tools': "batiment" } %}
+            {% for outil in outils %}
+                <li class="outils-batiment-item">
+                    <img class="outils-batiment-item-img" src="{{ outil.image }}">
+                    <h2 class="outils-batiment-item-title">{{ outil.title }}</h2>
+                </li>
+            {% endfor %}
+
+        </ul>
+
+        <ul class="outils-environnement" id="outils-environnement">
+            {% setcontent outils = 'outils' where {'tools': "environnement" } %}
+            {% for outil in outils %}
+                <li class="outils-environnement-item">
+                    <div class="outils-environnement-item-img" >
+                        <img class="outils-environnement-item-img-src" src="{{ outil.image }}">
+                    </div>
+                    <div class="outils-environnement-item-txt">
+                        <h2 class="outils-environnement-item-txt-title">{{ outil.title }}</h2>
+                        <ul class="outils-environnement-item-txt-list">
+                            {% for item in outil.list %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,26 @@
+{% block component %}
+    <h1 class="equipe-title"> {{ item.title }}</h1>
+    <div class="equipe" id="equipe">
+        <div class="equipe-txt">
+            {{ item.paragraph }}
+        </div>
+        <div class="equipe-people">
+            <h2 class="equipe-people-title">{{ item.subtitle }}</h2>
+            {% setcontent peoples = 'people' orderby 'sorting' %}
+            <ul class="equipe-people-list">
+                {% for people in peoples %}
+                    <li class="equipe-people-list-item" >
+                        <img class="equipe-people-list-item-img" src="{{ people.image }}">
+                        <div class="equipe-people-list-item-info">
+                            <h3 class="equipe-people-list-item-info-name">{{ people.name }}</h3>
+                            <p  class="equipe-people-list-item-info-job" >{{ people.job }}</p>
+                        </div>
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{# empty Twig template #}
+<div class="chantier__listing"> {# pourquoi la div fait la largeur du contenu#}
+	{% for chantier in chantiers %}
+		{#{  dump (chantier) }#}
+		
+		{%  if chantier.contentType == 'chantiers' %}
+			{% set url = '../chantier/' ~ chantier.slug %}
+		{%  else %}
+			{%  if chantier.contentType == 'outils' %}
+				{% set url = '/page/a-propos' %}
+			{% else %}	{# block : on récuo la page du block #}
+				{% set relatedrecords = chantier|related %}
+				{% if relatedrecords is not empty %}
+					{% set url = relatedrecords|first|link %}
+					{#<p>Related content:</p>
+					<ul>
+					{% for related in relatedrecords %}
+						<li><a href="{{ related|link }}">{{ related.title }}</a></li>
+					{%  endfor %}
+					</ul>#}
+				{%  else %}
+					{% set url = chantier.contentType ~ "/" ~ chantier.slug %}
+				{% endif %}
+			{% endif %}
+		{% endif %}
+		<div class="chantier__listing-item bg-white"><!-- Content-type={{ chantier.contentType }}-->
+			<a href="{{ url }}" class="h-100 text-decoration-none">
+				{#{ dump(chantier.miniature) }#}
+				<div class="chantier__listing-item-divint">
+					<img src={{chantier.miniature|thumbnail(400, 300)}} alt="{{chantier.miniature.filename|replace({'imagesChantier/': '', '-': ' ', '_': ' '})}}" class="chantier__listing-item-divint-img" >
+				</div>
+
+				<div class=" m-2">
+					<p class="fs-6 m-0 text-black">{{chantier|title}}</p>
+					<p class="chantier__listing-item-divint-cdpstville">{{chantier.cdpstville}}</p>
+				</div>
+			</a>
+		</div>
+	{% endfor %}
+</div>

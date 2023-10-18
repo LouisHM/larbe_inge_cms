@@ -1,0 +1,21 @@
+{% extends 'partials/_master.twig' %}
+
+{% block content %}
+    <h1>{{ recordlist.title }}</h1>
+
+    <ul>
+        {% for record in recordlist.records %}
+            <li>
+                <a href="{{ record.link }}">{{ record.title }}</a>
+                {% if record.publishedAt %}
+                    <small>{{ record.publishedAt|date('M j, Y') }}</small>
+                {% endif %}
+                {% if record.summary %}
+                    <p>{{ record.summary }}</p>
+                {% endif %}
+            </li>
+        {% else %}
+            <li>No records found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

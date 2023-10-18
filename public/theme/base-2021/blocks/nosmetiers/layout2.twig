@@ -1,0 +1,10 @@
+{% block component %}
+    <div class="layout2">
+        <h2 class="layout2-subtitle">{{ item.title }}</h2>
+        <ul class="layout2-list">
+            {% for service in item.list %}
+                <li>{{ service }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock component %}

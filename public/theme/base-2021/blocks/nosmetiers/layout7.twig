@@ -1,0 +1,11 @@
+{% block component %}
+    <div class="layout7">
+        <div class="layout7-container">
+            <img src="{{ item.image }}" class="layout7-container-img">
+        </div>
+        <div class="layout7-text">
+            <span class="layout7-text-paragraph">{{ item.paragraph }}</span>
+            <a href="{{ item.link }}" target="_blank"><button class="layout7-text-button" >{{ item.subtitle }}</button></a>
+        </div>
+    </div>
+{% endblock component %}

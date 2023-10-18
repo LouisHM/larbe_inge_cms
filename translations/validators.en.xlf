@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+  <file id="validators.en">
+    <unit id="Osw6_tX">
+      <segment>
+        <source>The CAPTCHA challenge failed with "{{ error }}". Please try again or contact the site owner.</source>
+        <target>The CAPTCHA challenge failed with "sitekey-secret-mismatch". Please try again or contact the site owner.</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

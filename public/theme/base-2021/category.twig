@@ -1,0 +1,40 @@
+{% extends 'partials/_master.twig' %}
+{% block main %}
+
+    {% set slug =  app.request.pathInfo|split('/')|last %}
+	{% set taxo =  attribute(app.request.pathInfo|split('/'), 1) %}
+	
+	{%  if taxo == 'metier' %}
+		{% setcontent categories = 'miniatures' where {'metiers': slug } %}
+	{%  elseif taxo == 'activite' %}
+		{% setcontent categories = 'miniatures' where {'activites': slug } %}
+	{%  else %}
+		{% setcontent categories = 'miniatures' where {'poles': slug } %}
+	{%  endif %}
+	
+	{% set category = categories|first %}
+	{#{  dump(category) }#}
+	
+    {% setcontent chantiers = 'chantiers' where {'metiers': slug } %}
+
+    <div class="chantier__listing-main bg-light">
+		 <div  class=" references flex-md-row">
+            <h1 class="references-title">Nos Réalisations</h1>
+            <div>{% include 'partials/_searchbar.twig' %}</div>
+        </div>
+		<div class="chantier__listing-header">
+			<h1 class="chantier__listing-header-title"><img class="chantier__listing-header-icon" src="{{ category.picto }}">&nbsp; {{ taxo|capitalize }} : {{ category.title}} </h1>
+            {#<h1 class="chantier__listing-header-title">Liste de chantiers  <i>{{ slug|upper }}</i></h1>#}<a class="chantier__listing-header-btn" href="/">Retour</a>
+        </div>
+        
+		{%  if chantiers|length > 0 %}
+			{% include "partials/_chantiers_listing.twig" %}
+		{%  else  %}
+			<p>Désolé, aucun chantier présent dans cette catégorie</p>
+		{% endif %}
+    </div>
+
+    {% include "partials/_category_recap.twig" %}
+
+
+{% endblock main %}

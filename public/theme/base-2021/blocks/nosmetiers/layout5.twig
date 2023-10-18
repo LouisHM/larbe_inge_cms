@@ -1,0 +1,15 @@
+{% block component %}
+    <div class="layout5">
+        <div class="layout5-container">
+            <h1 class="layout5-container-title">{{item.title}}</h1>
+            <ul class="layout5-container-list">
+                {% for prop in item.list %}
+                    <li>{{ prop }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+
+{% endblock %}
